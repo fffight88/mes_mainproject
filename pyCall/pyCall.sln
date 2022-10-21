@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32602.291
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pyCall", "pyCall\pyCall.csproj", "{7916F534-5934-4C89-B20B-73EF3DF9308C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7916F534-5934-4C89-B20B-73EF3DF9308C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7916F534-5934-4C89-B20B-73EF3DF9308C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7916F534-5934-4C89-B20B-73EF3DF9308C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7916F534-5934-4C89-B20B-73EF3DF9308C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {147A3E30-411E-4223-9745-60B77DED4929}
+	EndGlobalSection
+EndGlobal
