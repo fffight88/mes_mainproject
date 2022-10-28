@@ -1,0 +1,46 @@
+// 권한주기
+sudo -s
+
+// 아마존리눅스 엑스트라스 버전 업데이트 및 php7.2 인스톨. wordpress는 php7.2이상 지원하니 반드시 7.2 이상으로 인스톨
+sudo amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2
+
+// 아파치서버 인스톨
+sudo yum install -y httpd 
+
+// 웹서버 구동
+systemctl start httpd
+
+// 인스턴스가 재시작되더라도 서비스가 자동으로 구동하도록 등록
+chkconfig httpd on
+
+// 설치한 아파치의 폴더에 권한을 준다
+chown -R ec2-user:ec2-user /var/www/html
+
+// 워드프레스 디렉토리 생성
+mkdir /var/www/html/wordpress
+
+// EFS의 파일시스템 ID를 복사해서 아래 코드의 [EFS_ID]에 붙여넣는다. 워드프레스를 nfs 형식으로 사용하므로 마운트하기 위한 준비
+echo "$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone).[EFS_ID].efs.ap-northeast-2.amazonaws.com:/   /var/www/html/wordpress   nfs4    defaults" >> /etc/fstab
+
+// 웹서버에 EFS를 마운트
+mount -a
+
+// 워드프레스 다운로드
+wget https://wordpress.org/latest.tar.gz
+
+// 압축풀기
+tar -xzf latest.tar.gz
+
+// 압축이 풀린 wordpress 폴더를 이동
+cp wordpress /var/www/html -r 
+
+// 워드프레스 폴더에 권한 부여
+chown  ec2-user /var/www/html/wordpress
+
+// 워드프레스 폴더 내 모든 파일에 대해 퍼미션을 부여
+chmod -R o+r /var/www/html/wordpress
+
+// wp-config.php를 /home/ec2-user로 복사. DB_USER, DB_PASSWORD, DB_HOST를 수정한 뒤에. SCP 이용해서 PRIVATE KEY를 불러들여서.
+
+// wp-config.php 파일을 워드프레스 폴더에 복사
+cp wp-config.php /var/www/html/wordpress
